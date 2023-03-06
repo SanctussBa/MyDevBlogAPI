@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
-using System.Reflection;
 using TheDevBlog.API.Data;
 using TheDevBlog.API.Models.DTO;
 using TheDevBlog.API.Models.Enities;
@@ -49,7 +47,6 @@ namespace TheDevBlog.API.Controllers
                 ImageUrl = addPostRequest.ImageUrl,
                 PublishDate = DateTime.UtcNow,
                 Summary = addPostRequest.Summary,
-                UrlHandle = addPostRequest.UrlHandle,
                 Favourite = addPostRequest.Favourite
 
             };
@@ -57,7 +54,8 @@ namespace TheDevBlog.API.Controllers
             var log = new Log()
             {
                 Id= Guid.NewGuid(),
-                LogText="New Post was created",
+                LogText="new",
+                LoggedAt= DateTime.UtcNow,
                 PostId=post.Id
             };
 
@@ -83,13 +81,13 @@ namespace TheDevBlog.API.Controllers
                 existingPost.ImageUrl= updatePostRequest.ImageUrl;
                 existingPost.UpdatedDate = DateTime.UtcNow;
                 existingPost.Summary= updatePostRequest.Summary;
-                existingPost.UrlHandle= updatePostRequest.UrlHandle;
                 existingPost.Favourite= updatePostRequest.Favourite;
 
                 var log = new Log()
                 {
                     Id = Guid.NewGuid(),
-                    LogText = "Post was updated",
+                    LogText = "update",
+                    LoggedAt = DateTime.UtcNow,
                     PostId = existingPost.Id
                 };
 

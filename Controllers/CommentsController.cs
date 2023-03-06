@@ -51,7 +51,8 @@ namespace TheDevBlog.API.Controllers
             var log = new Log()
             {
                 Id = Guid.NewGuid(),
-                LogText = "New Comment was added",
+                LogText = "comment",
+                LoggedAt = DateTime.UtcNow,
                 PostId = addCommentRequest.PostId
             };
 
